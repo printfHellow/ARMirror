@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtMirror - Trải nghiệm AR</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* AR Page Styles */
+        .ar-page {
+            min-height: 100vh;
+            padding: 60px 40px;
+        }
+
+        /* Hero Section */
+        .ar-hero-section {
+            max-width: 1400px;
+            margin: 0 auto 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            background: rgba(139, 107, 163, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 60px;
+        }
+
+        .ar-hero-content {
+            color: white;
+        }
+
+        .ar-hero-content h1 {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .ar-hero-content p {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            opacity: 0.95;
+        }
+
+        .ar-cta-button {
+            background: linear-gradient(135deg, #00D4FF 0%, #0099FF 100%);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ar-cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .ar-hero-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .ar-hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Steps Section */
+        .ar-steps-section {
+            max-width: 1400px;
+            margin: 0 auto 80px;
+            background: rgba(207, 122, 175, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 60px;
+        }
+
+        .ar-steps-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .ar-steps-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .ar-steps-header p {
+            font-size: 15px;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .steps-visual-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .center-phone {
+            flex: 0 0 auto;
+            max-width: 400px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 30px;
+            padding: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .phone-screen {
+            background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 20px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .phone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .phone-header span {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+        }
+
+        .mirror-display {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mirror-display img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+        }
+
+        .control-icons {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .icon-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .icon-lock {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid rgba(255, 193, 7, 0.6);
+        }
+
+        .icon-camera {
+            background: rgba(255, 193, 7, 0.2);
+            border: 2px solid rgba(255, 193, 7, 0.6);
+        }
+
+        .window-options {
+            display: flex;
+            justify-content: center;
+            /* canh giữa */
+            gap: 12px;
+        }
+
+        .window-option {
+            width: 70px;
+            height: 70px;
+
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(100, 200, 255, 0.5);
+            border-radius: 14px;
+            /* bo góc */
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 11px;
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+        }
+
+
+        .window-option.active {
+            background: rgba(100, 200, 255, 0.2);
+            border-color: rgba(100, 200, 255, 0.8);
+        }
+
+        .window-option:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Side Annotations */
+        .left-annotations,
+        .right-annotations {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .annotation {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-width: 250px;
+        }
+
+        .left-annotations .annotation {
+            margin-left: auto;
+        }
+
+        .annotation::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 2px;
+            background: white;
+            transform: translateY(-50%);
+        }
+
+        .left-annotations .annotation::after {
+            right: -40px;
+        }
+
+        .right-annotations .annotation::after {
+            left: -40px;
+        }
+
+        .annotation-number {
+            background: linear-gradient(135deg, #00D4FF 0%, #0099FF 100%);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .annotation h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .annotation p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .annotation-image {
+            width: 100%;
+            height: 80px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .annotation-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* QR Section */
+        .ar-qr-section {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .ar-qr-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .ar-qr-section p {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .qr-download-btn {
+            background: linear-gradient(135deg, #00D4FF 0%, #0099FF 100%);
+            color: white;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+        }
+
+        .qr-download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .qr-code-container {
+            background: white;
+            border: 15px solid #f5f5f5;
+            border-radius: 20px;
+            padding: 30px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .qr-code {
+            width: 250px;
+            height: 250px;
+            background: white;
+            border: 3px solid #333;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .qr-code img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+        }
+
+        .qr-instructions {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: 30px;
+            color: #666;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .qr-hand-left,
+        .qr-hand-right {
+            font-size: 60px;
+        }
+
+        .qr-text {
+            flex: 1;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .steps-visual-container {
+                flex-direction: column;
+            }
+
+            .left-annotations,
+            .right-annotations {
+                flex-direction: row;
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .annotation::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .ar-hero-section {
+                grid-template-columns: 1fr;
+                padding: 40px;
+            }
+
+            .ar-steps-section,
+            .ar-qr-section {
+                padding: 40px 30px;
+            }
+
+            .ar-steps-header h2,
+            .ar-qr-section h2 {
+                font-size: 28px;
+            }
+
+            .center-phone {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .ar-page {
+                padding: 40px 20px;
+            }
+
+            .ar-hero-section,
+            .ar-steps-section,
+            .ar-qr-section {
+                padding: 30px 20px;
+            }
+
+            .left-annotations,
+            .right-annotations {
+                flex-direction: column;
+            }
+
+            .annotation {
+                max-width: 100%;
+            }
+
+            .qr-code {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER PLACEHOLDER -->
+    <div id="header-placeholder"></div>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <div class="main-content">
+        <section class="ar-page">
+            <!-- Hero Section -->
+            <div class="ar-hero-section">
+                <div class="ar-hero-content">
+                    <h1>Trải nghiệm sản
+                        phẩm trong không
+                        gian của bạn với
+                        công nghệ AR</h1>
+                    <p>
+                        Ứng dụng của chúng tôi giúp bạn xem trước đồ nội
+                        thất, thiết bị điện tử, và nhiều sản phẩm khác ngay tại
+                        nhà trước khi quyết định mua hàng.
+                    </p>
+                    <button class="ar-cta-button">Truy cập ngay website</button>
+                </div>
+                <div class="ar-hero-image">
+                    <img src="img/Image.png" alt="AR Experience">
+                </div>
+            </div>
+
+            <!-- Steps Visual Section -->
+            <div class="ar-steps-section">
+                <div class="ar-steps-header">
+                    <h2>Các bước đơn giản để bắt đầu</h2>
+                    <p>Làm theo các bước dưới đây để làm chủ ứng dụng và bắt đầu trải nghiệm mua
+                        sắm hoàn toàn mới.</p>
+                </div>
+
+                <div class="steps-visual-container">
+                    <!-- Left Annotations -->
+                    <div class="left-annotations">
+                        <div class="annotation">
+                            <div class="annotation-image">
+                                <img src="img/Image (1).png" alt="Product">
+                            </div>
+                            <div class="annotation-number">1</div>
+                            <h3>Chọn sản phẩm</h3>
+                            <p>Duyệt qua danh mục sản
+                                phẩm phong phú của
+                                chúng tôi và chọn một
+                                model 3D bạn muốn xem
+                                trước.</p>
+                        </div>
+
+                        <div class="annotation">
+                            <div class="annotation-image">
+                                <img src="img/Image (2).png" alt="Product">
+                            </div>
+                            <div class="annotation-number">2</div>
+                            <h3>Quét không gian
+                                và đặt sản phẩm</h3>
+                            <p>Sử dụng camera điện thoại
+                                để quét một mặt phẳng
+                                như sàn nhà hoặc mặt bàn,
+                                sau đó chạm để đặt sản
+                                phẩm vào không gian của
+                                bạn.</p>
+                        </div>
+                    </div>
+
+                    <!-- Center Phone Display -->
+                    <div class="center-phone">
+                        <div class="phone-screen">
+                            <div class="phone-header">
+                                <span>⬅ màn hình ứng dụng đang hoạt</span>
+                                <span>⚙ ⋮</span>
+                            </div>
+
+                            <div class="mirror-display">
+                                <img src="img/Screenshot 2025-12-31 100959.png" alt="Mirror">
+                            </div>
+
+                            <div class="window-options">
+                                <div class="window-option active">Model 1</div>
+                                <div class="window-option">Model 2</div>
+                                <div class="window-option">Model 3</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Annotations -->
+                    <div class="right-annotations">
+                        <div class="annotation">
+                            <div class="annotation-image">
+                                <img src="img/Image (3).png" alt="Product">
+                            </div>
+                            <div class="annotation-number">3</div>
+                            <h3>Tương tác với sản
+                                phẩm</h3>
+                            <p>Dễ dàng xoay, di chuyển
+                                và thay đổi kích thước của
+                                sản phẩm để xem nó phù
+                                hợp với không gian của
+                                bạn như thế nào.</p>
+                        </div>
+
+                        <div class="annotation">
+                            <div class="annotation-image">
+                                <img src="img/Image (4).png" alt="Result">
+                            </div>
+                            <div class="annotation-number">4</div>
+                            <h3>Sử dụng các công
+                                cụ</h3>
+                            <p>Sử dụng nút Xóa để loại bỏ
+                                sản phẩm hoặc nút Khóa
+                                để cố định vị trí, giúp bạn
+                                dễ dàng xem từ mọi góc
+                                độ.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QR Code Section -->
+            <div class="ar-qr-section">
+                <h2>Sẵn sàng để bắt đầu?</h2>
+                <p>Truy cập trang web ngay bây giờ và biến ngôi nhà của bạn thành
+                    phòng trưng bày cá nhân.</p>
+
+                <div class="qr-code-container">
+                    <div class="qr-code">
+                        <!-- QR Code placeholder - replace with actual QR code image -->
+                        <img src="img/frame 1.png" alt="QR Code">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER PLACEHOLDER -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="include.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // CTA Button - scroll to QR section
+            const ctaButton = document.querySelector('.ar-cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', function () {
+                    const qrSection = document.querySelector('.ar-qr-section');
+                    if (qrSection) {
+                        qrSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+
+            // Window options switching
+            const windowOptions = document.querySelectorAll('.window-option');
+            windowOptions.forEach(option => {
+                option.addEventListener('click', function () {
+                    windowOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // QR Download button
+            const qrDownloadBtn = document.querySelector('.qr-download-btn');
+            if (qrDownloadBtn) {
+                qrDownloadBtn.addEventListener('click', function () {
+                    alert('Ứng dụng AR đang được phát triển. Vui lòng quay lại sau!');
+                });
+            }
+
+            // Control icons
+            const iconBtns = document.querySelectorAll('.icon-btn');
+            iconBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    if (this.classList.contains('icon-lock')) {
+                        alert('Khóa/Mở khóa vị trí sản phẩm');
+                    } else if (this.classList.contains('icon-camera')) {
+                        alert('Chụp ảnh màn hình AR');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

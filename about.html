@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtMirror - Giới thiệu</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles for about page */
+        .about-hero {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(139, 107, 163, 0.3) 0%, rgba(207, 122, 175, 0.2) 100%);
+        }
+
+        .about-hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-hero-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-hero-text {
+            color: white;
+        }
+
+        .about-hero-text h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            background: rgba(139, 107, 163, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .about-hero-text p {
+            font-size: 15px;
+            line-height: 1.9;
+            opacity: 0.95;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .highlight-text {
+            background: rgba(207, 122, 175, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .ar-technology-section {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, rgba(207, 122, 175, 0.2) 0%, rgba(195, 213, 165, 0.2) 100%);
+        }
+
+        .ar-content-box {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 50px;
+            color: white;
+        }
+
+        .ar-content-box h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .ar-content-box p {
+            font-size: 15px;
+            line-height: 1.9;
+            opacity: 0.95;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        /* AR Features Section */
+        .ar-features-section {
+            padding: 40px;
+        }
+
+        .ar-feature-card {
+            margin-bottom: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-pink {
+            background: linear-gradient(135deg, rgba(207, 122, 175, 0.7) 0%, rgba(207, 122, 175, 0.5) 100%);
+        }
+
+        .feature-beige {
+            background: linear-gradient(135deg, rgba(220, 190, 160, 0.7) 0%, rgba(220, 190, 160, 0.5) 100%);
+        }
+
+        .feature-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 40px;
+            gap: 40px;
+        }
+
+        .feature-content.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .feature-content.reverse .feature-image {
+            order: 1;
+        }
+
+        .feature-content.reverse .feature-text {
+            order: 2;
+        }
+
+        .feature-text {
+            color: white;
+        }
+
+        .feature-text h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .feature-text p {
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            opacity: 0.95;
+            text-align: justify;
+        }
+
+        .feature-image {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .feature-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .about-hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-hero-text h1 {
+                font-size: 24px;
+                padding: 20px;
+            }
+
+            .ar-content-box {
+                padding: 30px;
+            }
+
+            .ar-content-box h2 {
+                font-size: 24px;
+            }
+
+            .feature-content,
+            .feature-content.reverse {
+                grid-template-columns: 1fr;
+                padding: 30px;
+            }
+
+            .feature-content.reverse .feature-image,
+            .feature-content.reverse .feature-text {
+                order: 0;
+            }
+
+            .feature-text h3 {
+                font-size: 20px;
+            }
+
+            .feature-text p {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER PLACEHOLDER -->
+    <div id="header-placeholder"></div>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <div class="main-content">
+        <!-- About Hero Section -->
+        <section class="about-hero">
+            <div class="about-hero-content">
+                <div class="about-hero-image">
+                    <img src="img/image 19.png" alt="ArtMirror">
+                </div>
+                <div class="about-hero-text">
+                    <h1>ARTMIRROR - Nơi mọi giấc mơ của bạn thành hiện thực</h1>
+                    <p>
+                        Dự án AR Mirror được xây dựng với mong muốn mang đến cho khách hàng một trải nghiệm mua sắm và
+                        thưởng thức nghệ thuật hoàn toàn mới. Trong bối cảnh nhu cầu sống thẩm mỹ ngày càng cao, chúng
+                        tôi nhận thấy rằng việc chọn gương decor phù hợp với từng không gian sống không phải việc dễ
+                        dàng, ánh sáng đến phong cách nội thất — ODream ra đời như một cầu nối giữa khách hàng và sản
+                        phẩm lý tưởng.
+                    </p>
+                    <div class="highlight-text">
+                        <p>
+                            Ứng dụng công nghệ Augmented Reality (AR), ODream cho phép người dùng "thử" gương ngay trong
+                            chính không gian thật của mình thông qua ứng dụng website hoặc ứng dụng di động. Nhờ đó,
+                            khách hàng không còn cần dựa vào hình ảnh sản phẩm theo thời gian thực tại chính không gian
+                            sống của mình, giúp họ đưa ra quyết định nhanh chóng, chính xác và tự tin hơn, đồng thời cảm
+                            nhận nghệ thuật một cách trọn vẹn ngay tại không gian của mình.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AR Technology Section -->
+        <section class="ar-technology-section">
+            <div class="ar-content-box">
+                <h2>Công nghệ AR trong ODream</h2>
+                <p>
+                    Tên gọi nhóm thực hiện dự án: ODream (Our Dream) Tên dự án hiện tại thân thiện với đông đảo, sử dụng
+                    tạo và khai vọng đối mới. Dự án không chỉ nâng tầm trải nghiệm mua sắm mà còn mang đến những thiết
+                    kế độc đáo, chủ trọng cả nhìn lẫn nằm cả giá trị thẩm mỹ.
+                </p>
+                <p>
+                    Đây là bước tiên mới giúp kết nối nghệ thuật – công nghệ – cảm xúc, hướng đến một thị trường decor
+                    hiện đại, tiến lợi và giàu tính sáng tạo.
+                </p>
+            </div>
+        </section>
+
+        <!-- AR Features Section -->
+        <section class="ar-features-section">
+            <div class="ar-feature-card feature-pink">
+                <div class="feature-content">
+                    <div class="feature-text">
+                        <h3>AR - Sự kết hợp giữa công nghệ và truyền thống</h3>
+                        <p>
+                            Công nghệ AR không chỉ mang lại trải nghiệm mua sắm trực tuyến độc đáo mà còn giúp khách
+                            hàng kết nối sâu sắc hơn với sản phẩm nghệ thuật thủ công truyền thống. AR Mirror cung cấp
+                            một kênh phân phối trực tuyến hiện đại, nơi nghệ nhân và thương hiệu độc lập có thể giới
+                            thiệu sản phẩm của mình một cách sống động mà không bị hạn chế bởi không gian vật lý.
+                        </p>
+                        <p>
+                            Từ những chiếc gương cổ điển đến những thiết kế đương đại, AR Mirror mang nghệ thuật decor
+                            vượt ra khỏi showroom vật lý, giúp nghệ thuật trở nên dễ tiếp cận hơn và tạo cầu nối giữa
+                            người sáng tạo và người yêu thích nghệ thuật.
+                        </p>
+                    </div>
+                    <div class="feature-image">
+                        <img src="img/image 19.png" alt="AR Technology">
+                    </div>
+                </div>
+            </div>
+
+            <div class="ar-feature-card feature-beige">
+                <div class="feature-content reverse">
+                    <div class="feature-image">
+                        <img src="img/image 19.png" alt="AR Mirror">
+                    </div>
+                    <div class="feature-text">
+                        <h3>AR - Sự kết hợp giữa công nghệ và truyền thống</h3>
+                        <p>
+                            Dự án này nhằm tạo dựng một nền tảng mua sắm gương decor trực tuyến dựa trên công nghệ AR,
+                            giúp người dùng nghệ thuật thành thật tính di động cao và tối thiểu hóa rủi ro mua sắm trực
+                            tuyến.
+                        </p>
+                        <p>
+                            AR Mirror – Nơi công nghệ hiện đại, nơi giúp khách hàng thưởng thức và sở hữu nghệ thuật một
+                            cách dễ dàng, đồng thời cung cấp một nền tảng bán hàng mới, phù hợp thành công của những
+                            thúc đẩy giá trị của họ.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER PLACEHOLDER -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="include.js"></script>
+</body>
+
+</html>
