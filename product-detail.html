@@ -580,7 +580,7 @@
             document.getElementById('productTitle').textContent = product.title;
 
             // Update product price
-            document.getElementById('productPrice').textContent = product.price;
+            document.getElementById('productPrice').textContent = product.priceDisplay;
 
             // Update product description
             document.getElementById('productDescription').textContent = product.description;
@@ -602,8 +602,12 @@
             product.colors.forEach(color => {
                 const colorWrapper = document.createElement('div');
                 const colorOption = document.createElement('div');
-                colorOption.className = `color-option ${color.value}${color.active ? ' active' : ''}`;
+                colorOption.className = `color-option${color.active ? ' active' : ''}`;
                 colorOption.setAttribute('data-color', color.value);
+                colorOption.style.background = color.hex;
+                if (color.value === 'white') {
+                    colorOption.style.border = '2px solid rgba(0,0,0,0.2)';
+                }
 
                 const colorLabel = document.createElement('div');
                 colorLabel.className = 'color-label';
@@ -678,7 +682,7 @@
                     </div>
                     <div class="related-product-info">
                         <h3>${relatedProduct.name}</h3>
-                        <p>${relatedProduct.price}</p>
+                        <p>${relatedProduct.priceDisplay}</p>
                     </div>
                 `;
                 relatedProductsGrid.appendChild(productCard);

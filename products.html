@@ -17,57 +17,199 @@
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: 280px 1fr;
             gap: 40px;
         }
 
-        /* Sidebar Categories */
-        .categories-sidebar {
+        /* Sidebar */
+        .filters-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .filter-section {
             background: rgba(139, 107, 163, 0.3);
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 20px;
-            padding: 30px 20px;
-            height: fit-content;
-            position: sticky;
-            top: 20px;
+            padding: 25px 20px;
         }
 
-        .categories-sidebar h3 {
+        .filter-section h3 {
             color: white;
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 700;
-            margin-bottom: 25px;
+            margin-bottom: 18px;
             text-align: center;
             letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 12px;
         }
 
-        .category-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        /* Search Box */
+        .search-filter {
+            position: relative;
         }
 
-        .category-item {
+        .search-filter input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
             background: rgba(255, 255, 255, 0.15);
             color: white;
-            padding: 12px 20px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-filter input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-filter input:focus {
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .search-filter::before {
+            content: "🔍";
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+        }
+
+        /* Category List */
+        .filter-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .filter-item {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            padding: 12px 16px;
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 14px;
             font-weight: 500;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .category-item:hover,
-        .category-item.active {
+        .filter-item:hover,
+        .filter-item.active {
             background: rgba(255, 255, 255, 0.3);
             border-color: rgba(255, 255, 255, 0.5);
             transform: translateX(5px);
+        }
+
+        .filter-item .icon {
+            font-size: 18px;
+        }
+
+        /* Color Options */
+        .color-filter-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .color-filter-item {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .color-filter-item:hover,
+        .color-filter-item.active {
+            transform: scale(1.15);
+            border-color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .color-filter-item.active::after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .color-all {
+            background: linear-gradient(135deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Select Dropdown */
+        .filter-select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 35px;
+        }
+
+        .filter-select:focus {
+            border-color: rgba(255, 255, 255, 0.6);
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .filter-select option {
+            background: #5a4a7a;
+            color: white;
+        }
+
+        /* Reset Filter Button */
+        .reset-filters-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 100, 100, 0.3);
+            border: 2px solid rgba(255, 100, 100, 0.5);
+            border-radius: 12px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .reset-filters-btn:hover {
+            background: rgba(255, 100, 100, 0.5);
+            transform: translateY(-2px);
         }
 
         /* Products Content */
@@ -81,7 +223,7 @@
 
         .products-header-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .products-header-title h2 {
@@ -92,10 +234,47 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
+        /* Results Info */
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .results-count {
+            font-weight: 600;
+        }
+
+        .sort-select {
+            padding: 8px 30px 8px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 13px;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+
+        .sort-select option {
+            background: #5a4a7a;
+            color: white;
+        }
+
         /* Products Grid */
         .products-display-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
             margin-bottom: 40px;
         }
@@ -120,7 +299,7 @@
 
         .product-item-image {
             width: 100%;
-            aspect-ratio: 3/4;
+            aspect-ratio: 1;
             border-radius: 12px;
             overflow: hidden;
             margin-bottom: 12px;
@@ -144,61 +323,76 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            gap: 6px;
+        }
+
+        .product-category-tag {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.3);
+            color: #FFD700;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            align-self: center;
         }
 
         .product-item-info h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 5px 0;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .product-item-info .product-price {
             font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 6px;
-            letter-spacing: 1px;
+            font-weight: 700;
+            color: #FFD700;
         }
 
-        .product-item-info p {
-            font-size: 13px;
-            opacity: 0.85;
-        }
-
-        /* Pagination */
-        .pagination {
+        .product-colors-preview {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin-top: 40px;
+            gap: 5px;
+            margin-top: 8px;
         }
 
-        .pagination-btn {
-            width: 35px;
-            height: 35px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            border-radius: 8px;
+        .color-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
             color: white;
+        }
+
+        .no-results-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .no-results h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .no-results p {
+            opacity: 0.8;
             font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .pagination-btn:hover,
-        .pagination-btn.active {
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(1.1);
-        }
-
-        .pagination-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
         }
 
         /* Responsive */
         @media (max-width: 1200px) {
             .products-display-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -207,18 +401,28 @@
                 grid-template-columns: 1fr;
             }
 
-            .categories-sidebar {
-                position: relative;
-                top: 0;
+            .filters-sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 15px;
             }
 
-            .category-list {
+            .filter-section {
+                flex: 1;
+                min-width: 200px;
+            }
+
+            .filter-section.search-section {
+                flex: 100%;
+            }
+
+            .filter-list {
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: center;
             }
 
-            .category-item {
+            .filter-item {
                 flex: 0 0 auto;
             }
 
@@ -228,6 +432,10 @@
         }
 
         @media (max-width: 576px) {
+            .products-page {
+                padding: 20px;
+            }
+
             .products-display-grid {
                 grid-template-columns: 1fr;
             }
@@ -237,7 +445,16 @@
             }
 
             .products-content {
-                padding: 25px;
+                padding: 25px 15px;
+            }
+
+            .results-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .filter-section {
+                min-width: 100%;
             }
         }
     </style>
@@ -251,23 +468,52 @@
     <div class="main-content">
         <section class="products-page">
             <div class="products-layout">
-                <!-- Sidebar Categories -->
-                <aside class="categories-sidebar">
-                    <h3>Danh mục</h3>
-                    <div class="category-list">
-                        <div class="category-item active" data-category="all">Gương tròn</div>
-                        <div class="category-item" data-category="vintage">Gương vuông</div>
-                        <div class="category-item" data-category="architecture">Anh/Hut/Cur</div>
-                        <div class="category-item" data-category="animal">Animal</div>
-                        <div class="category-item" data-category="botanical">Botanical</div>
-                        <div class="category-item" data-category="nature">Nature</div>
-                        <div class="category-item" data-category="black-white">Black and White</div>
-                        <div class="category-item" data-category="retro">Retro</div>
-                        <div class="category-item" data-category="travel">Travel Around the World</div>
-                        <div class="category-item" data-category="ariel">Ariel View</div>
-                        <div class="category-item" data-category="universe">Universe</div>
-                        <div class="category-item" data-category="inspiration">Inspiration</div>
+                <!-- Sidebar Filters -->
+                <aside class="filters-sidebar">
+                    <!-- Search -->
+                    <div class="filter-section search-section">
+                        <h3>🔍 Tìm kiếm</h3>
+                        <div class="search-filter">
+                            <input type="text" id="searchInput" placeholder="Nhập tên gương...">
+                        </div>
                     </div>
+
+                    <!-- Categories -->
+                    <div class="filter-section">
+                        <h3>📂 Danh mục</h3>
+                        <div class="filter-list" id="categoryList">
+                            <!-- Categories will be loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div class="filter-section">
+                        <h3>💰 Khoảng giá</h3>
+                        <select class="filter-select" id="priceFilter">
+                            <!-- Price ranges will be loaded dynamically -->
+                        </select>
+                    </div>
+
+                    <!-- Colors -->
+                    <div class="filter-section">
+                        <h3>🎨 Màu sắc</h3>
+                        <div class="color-filter-list" id="colorFilter">
+                            <!-- Colors will be loaded dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Sizes -->
+                    <div class="filter-section">
+                        <h3>📏 Kích thước</h3>
+                        <select class="filter-select" id="sizeFilter">
+                            <!-- Sizes will be loaded dynamically -->
+                        </select>
+                    </div>
+
+                    <!-- Reset Button -->
+                    <button class="reset-filters-btn" id="resetFilters">
+                        🔄 Xóa bộ lọc
+                    </button>
                 </aside>
 
                 <!-- Products Content -->
@@ -276,9 +522,28 @@
                         <h2>Sản phẩm</h2>
                     </div>
 
+                    <!-- Results Info -->
+                    <div class="results-info">
+                        <span class="results-count" id="resultsCount">Hiển thị 6 sản phẩm</span>
+                        <select class="sort-select" id="sortSelect">
+                            <option value="default">Sắp xếp: Mặc định</option>
+                            <option value="price-asc">Giá: Thấp đến Cao</option>
+                            <option value="price-desc">Giá: Cao đến Thấp</option>
+                            <option value="name-asc">Tên: A-Z</option>
+                            <option value="name-desc">Tên: Z-A</option>
+                        </select>
+                    </div>
+
                     <!-- Products Grid -->
                     <div class="products-display-grid" id="productsGrid">
                         <!-- Products will be loaded dynamically from products-data.js -->
+                    </div>
+
+                    <!-- No Results -->
+                    <div class="no-results" id="noResults" style="display: none;">
+                        <div class="no-results-icon">🔍</div>
+                        <h3>Không tìm thấy sản phẩm</h3>
+                        <p>Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm</p>
                     </div>
                 </div>
             </div>
@@ -292,89 +557,259 @@
     <script src="include.js"></script>
     <script src="products-data.js"></script>
     <script>
-        // Load and display products
         document.addEventListener('DOMContentLoaded', function () {
+            // Elements
             const productsGrid = document.getElementById('productsGrid');
-            
-            // Render products from data
+            const searchInput = document.getElementById('searchInput');
+            const categoryList = document.getElementById('categoryList');
+            const priceFilter = document.getElementById('priceFilter');
+            const colorFilter = document.getElementById('colorFilter');
+            const sizeFilter = document.getElementById('sizeFilter');
+            const sortSelect = document.getElementById('sortSelect');
+            const resultsCount = document.getElementById('resultsCount');
+            const noResults = document.getElementById('noResults');
+            const resetFilters = document.getElementById('resetFilters');
+
+            // Current filters state
+            let currentFilters = {
+                search: '',
+                category: 'all',
+                priceRange: 'all',
+                color: 'all',
+                size: 'all'
+            };
+
+            // Initialize filters
+            function initFilters() {
+                // Load categories
+                const categories = getCategories();
+                categoryList.innerHTML = '';
+                categories.forEach(cat => {
+                    const item = document.createElement('div');
+                    item.className = 'filter-item' + (cat.id === 'all' ? ' active' : '');
+                    item.setAttribute('data-category', cat.id);
+                    item.innerHTML = `<span class="icon">${cat.icon}</span> ${cat.name}`;
+                    categoryList.appendChild(item);
+                });
+
+                // Load price ranges
+                const priceRanges = getPriceRanges();
+                priceFilter.innerHTML = '';
+                priceRanges.forEach(range => {
+                    const option = document.createElement('option');
+                    option.value = range.id;
+                    option.textContent = range.name;
+                    priceFilter.appendChild(option);
+                });
+
+                // Load colors
+                const colors = getColors();
+                colorFilter.innerHTML = '';
+                // Add "All" option
+                const allColorItem = document.createElement('div');
+                allColorItem.className = 'color-filter-item color-all active';
+                allColorItem.setAttribute('data-color', 'all');
+                allColorItem.title = 'Tất cả màu';
+                allColorItem.textContent = 'ALL';
+                colorFilter.appendChild(allColorItem);
+                
+                colors.forEach(color => {
+                    const item = document.createElement('div');
+                    item.className = 'color-filter-item';
+                    item.setAttribute('data-color', color.value);
+                    item.style.backgroundColor = color.hex;
+                    item.title = color.name;
+                    if (color.value === 'white') {
+                        item.style.border = '2px solid rgba(0,0,0,0.2)';
+                    }
+                    colorFilter.appendChild(item);
+                });
+
+                // Load sizes
+                const sizes = getSizes();
+                sizeFilter.innerHTML = '<option value="all">Tất cả kích thước</option>';
+                sizes.forEach(size => {
+                    const option = document.createElement('option');
+                    option.value = size.value;
+                    option.textContent = size.name;
+                    sizeFilter.appendChild(option);
+                });
+            }
+
+            // Render products
             function renderProducts(products) {
                 productsGrid.innerHTML = '';
+                
+                if (products.length === 0) {
+                    productsGrid.style.display = 'none';
+                    noResults.style.display = 'block';
+                    resultsCount.textContent = 'Không tìm thấy sản phẩm';
+                    return;
+                }
+
+                productsGrid.style.display = 'grid';
+                noResults.style.display = 'none';
+                resultsCount.textContent = `Hiển thị ${products.length} sản phẩm`;
+
                 products.forEach(product => {
                     const productItem = document.createElement('div');
                     productItem.className = 'product-item';
                     productItem.setAttribute('data-product-id', product.id);
+                    
+                    // Generate color dots HTML
+                    const colorDotsHTML = product.colors.slice(0, 4).map(color => 
+                        `<div class="color-dot" style="background-color: ${color.hex};" title="${color.name}"></div>`
+                    ).join('');
+
                     productItem.innerHTML = `
                         <div class="product-item-image">
                             <img src="${product.image}" alt="${product.name}">
                         </div>
                         <div class="product-item-info">
+                            <span class="product-category-tag">${product.categoryName}</span>
                             <h3>${product.name}</h3>
-                            <p>${product.price}</p>
+                            <p class="product-price">${product.priceDisplay}</p>
+                            <div class="product-colors-preview">
+                                ${colorDotsHTML}
+                            </div>
                         </div>
                     `;
                     productsGrid.appendChild(productItem);
                 });
             }
 
-            // Load all products
-            const allProducts = getAllProducts();
-            renderProducts(allProducts);
+            // Apply filters and sort
+            function applyFiltersAndSort() {
+                let filteredProducts = filterProducts(currentFilters);
+                
+                // Apply sorting
+                const sortValue = sortSelect.value;
+                if (sortValue === 'price-asc') {
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                } else if (sortValue === 'price-desc') {
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                } else if (sortValue === 'name-asc') {
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name, 'vi'));
+                } else if (sortValue === 'name-desc') {
+                    filteredProducts.sort((a, b) => b.name.localeCompare(a.name, 'vi'));
+                }
 
-            // Category filter functionality
-            const categoryItems = document.querySelectorAll('.category-item');
+                renderProducts(filteredProducts);
+            }
 
-            categoryItems.forEach(item => {
-                item.addEventListener('click', function () {
-                    // Remove active class from all
-                    categoryItems.forEach(cat => cat.classList.remove('active'));
-                    // Add active to clicked
-                    this.classList.add('active');
-
-                    const category = this.getAttribute('data-category');
-                    console.log('Selected category:', category);
-                    // Add filter logic here if needed
-                    // For now, show all products
-                    renderProducts(allProducts);
-                });
+            // Event Listeners
+            // Search
+            let searchTimeout;
+            searchInput.addEventListener('input', function () {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    currentFilters.search = this.value;
+                    applyFiltersAndSort();
+                }, 300);
             });
 
-            // Pagination functionality
-            const paginationBtns = document.querySelectorAll('.pagination-btn');
-
-            paginationBtns.forEach(btn => {
-                btn.addEventListener('click', function () {
-                    if (this.disabled) return;
-
-                    // Remove active from all number buttons
-                    paginationBtns.forEach(b => {
-                        if (b.textContent !== '«' && b.textContent !== '»') {
-                            b.classList.remove('active');
-                        }
-                    });
-
-                    // Add active to clicked (if not arrow)
-                    if (this.textContent !== '«' && this.textContent !== '»') {
-                        this.classList.add('active');
-                        console.log('Page:', this.textContent);
-                    }
-
-                    // Scroll to top
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
+            // Category filter
+            categoryList.addEventListener('click', function (e) {
+                const item = e.target.closest('.filter-item');
+                if (item) {
+                    document.querySelectorAll('#categoryList .filter-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    currentFilters.category = item.getAttribute('data-category');
+                    applyFiltersAndSort();
+                }
             });
 
-            // Product item click - Navigate to detail page with product ID
+            // Price filter
+            priceFilter.addEventListener('change', function () {
+                currentFilters.priceRange = this.value;
+                applyFiltersAndSort();
+            });
+
+            // Color filter
+            colorFilter.addEventListener('click', function (e) {
+                const item = e.target.closest('.color-filter-item');
+                if (item) {
+                    document.querySelectorAll('.color-filter-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    currentFilters.color = item.getAttribute('data-color');
+                    applyFiltersAndSort();
+                }
+            });
+
+            // Size filter
+            sizeFilter.addEventListener('change', function () {
+                currentFilters.size = this.value;
+                applyFiltersAndSort();
+            });
+
+            // Sort
+            sortSelect.addEventListener('change', function () {
+                applyFiltersAndSort();
+            });
+
+            // Reset filters
+            resetFilters.addEventListener('click', function () {
+                currentFilters = {
+                    search: '',
+                    category: 'all',
+                    priceRange: 'all',
+                    color: 'all',
+                    size: 'all'
+                };
+
+                searchInput.value = '';
+                priceFilter.value = 'all';
+                sizeFilter.value = 'all';
+                sortSelect.value = 'default';
+
+                document.querySelectorAll('#categoryList .filter-item').forEach(i => i.classList.remove('active'));
+                document.querySelector('#categoryList .filter-item[data-category="all"]').classList.add('active');
+
+                document.querySelectorAll('.color-filter-item').forEach(i => i.classList.remove('active'));
+                document.querySelector('.color-filter-item[data-color="all"]').classList.add('active');
+
+                applyFiltersAndSort();
+            });
+
+            // Product click - Navigate to detail page
             productsGrid.addEventListener('click', function (e) {
                 const productItem = e.target.closest('.product-item');
                 if (productItem) {
                     const productId = productItem.getAttribute('data-product-id');
-                    console.log('Clicked product ID:', productId);
-                    // Navigate to product detail page with ID
                     window.location.href = `product-detail.html?id=${productId}`;
                 }
             });
+
+            // Check URL params for initial filters
+            function checkUrlParams() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchParam = urlParams.get('search');
+                const categoryParam = urlParams.get('category');
+
+                if (searchParam) {
+                    searchInput.value = searchParam;
+                    currentFilters.search = searchParam;
+                }
+
+                if (categoryParam) {
+                    currentFilters.category = categoryParam;
+                    document.querySelectorAll('#categoryList .filter-item').forEach(i => {
+                        i.classList.remove('active');
+                        if (i.getAttribute('data-category') === categoryParam) {
+                            i.classList.add('active');
+                        }
+                    });
+                }
+            }
+
+            // Initialize
+            initFilters();
+            checkUrlParams();
+            applyFiltersAndSort();
         });
     </script>
 </body>
+
+</html>
 
 </html>
