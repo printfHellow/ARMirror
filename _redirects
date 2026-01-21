@@ -1,0 +1,6 @@
+# Redirect HTTP to HTTPS
+http://khung-guong-ar.com/* https://khung-guong-ar.com/:splat 301!
+http://www.khung-guong-ar.com/* https://khung-guong-ar.com/:splat 301!
+
+# Redirect www to non-www
+https://www.khung-guong-ar.com/* https://khung-guong-ar.com/:splat 301!
